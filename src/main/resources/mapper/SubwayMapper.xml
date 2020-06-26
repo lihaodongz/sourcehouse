@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ironman.sourcehouse.dao.SubwayMapper">
+
+    <resultMap id="baseResultMap" type="com.ironman.sourcehouse.model.Subway" >
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="city_en_name" jdbcType="VARCHAR" property="cityEnName"/>
+    </resultMap>
+    <sql id="tableName">
+        subway
+    </sql>
+    <sql id="basefield">
+        id,
+        name,
+        city_en_name
+    </sql>
+
+    <select id="getSubByCityName" resultMap="baseResultMap">
+        select
+        <include refid="basefield"/>
+        from
+        <include refid="tableName"/>
+        where
+        city_en_name = #{cityName}
+    </select>
+
+</mapper>

@@ -1,0 +1,27 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ironman.sourcehouse.dao.SubwayStationMapper">
+
+    <resultMap id="baseResultMap" type="com.ironman.sourcehouse.model.SubwayStation" >
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="subway_id" jdbcType="VARCHAR" property="subwayId"/>
+    </resultMap>
+
+    <sql id="tableName">
+        subway_station
+    </sql>
+    <sql id="baseField">
+        id,
+        name,
+        subway_id
+    </sql>
+
+    <select id="getSubwayStation" resultMap="baseResultMap">
+        select
+        <include refid="baseField"/>
+        from
+       <include refid="tableName"/>
+       where
+       subway_id = #{subwayId}
+    </select>
+</mapper>
