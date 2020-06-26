@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
+
 /**
  * @author 李浩东
  * @description
@@ -25,9 +27,16 @@ public class HomeController {
     }
 
 
+    /**
+     * 1. house,housedetail,houseimage,housetag 都要入库
+     * @param houseForm
+     * @return
+     */
     @PostMapping("/admin/add/house")
-    public String houseAdd(HouseForm houseForm){
+    public String houseAdd(@Valid HouseForm houseForm){
         logger.info(JSON.toJSONString(houseForm,true));
         return "/admin/center";
     }
+
+
 }

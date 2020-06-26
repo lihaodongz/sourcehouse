@@ -15,4 +15,6 @@ public interface SubwayMapper extends BaseMapper<Subway> {
 
 
     List<Subway> getSubByCityName(@Param("cityName") String cityName);
+
+    Subway findById(@Param("id") Long id);
 }

@@ -25,4 +25,13 @@
         city_en_name = #{cityName}
     </select>
 
+    <select id="findById" resultMap="baseResultMap" >
+        select
+        <include refid="basefield"/>
+        from
+        <include refid="tableName"/>
+        where
+        id = #{id}
+    </select>
+
 </mapper>

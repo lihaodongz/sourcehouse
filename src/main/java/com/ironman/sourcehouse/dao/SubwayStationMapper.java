@@ -16,4 +16,7 @@ public interface SubwayStationMapper extends BaseMapper<SubwayStation> {
 
     List<SubwayStation> getSubwayStation(@Param("subwayId") Long subwayId);
 
+
+    SubwayStation findById(@Param("id") Long id);
+
 }
