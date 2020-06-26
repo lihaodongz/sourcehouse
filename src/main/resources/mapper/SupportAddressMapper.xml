@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ironman.sourcehouse.dao.SupportAddressMapper">
+
+    <resultMap id="baseResultMap" type="com.ironman.sourcehouse.model.SupportAddress">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="level" jdbcType="VARCHAR" property="level"/>
+        <result column="belong_to" jdbcType="VARCHAR" property="belongTo"/>
+        <result column="en_name" jdbcType="VARCHAR" property="enName"/>
+        <result column="cn_name" jdbcType="VARCHAR" property="cnName"/>
+        <result column="baidu_mao_ing" jdbcType="DOUBLE" property="baiduMapIng"/>
+        <result column="baidu_map_lat" jdbcType="DOUBLE" property="baiduMapLat"/>
+    </resultMap>
+
+
+    <sql id="tableName">
+        support_address
+    </sql>
+
+    <sql id="field">
+        *
+    </sql>
+    <select id="getByLevel" resultMap="baseResultMap">
+        select
+         *
+        from
+        support_address
+        where level  = #{levle}
+    </select>
+
+    <select id="getRegion" resultMap="baseResultMap">
+        select
+        <include refid="field"/>
+        from
+        <include refid="tableName"/>
+        where
+        level = #{level}
+        and belong_to = #{cityName}
+    </select>
+
+</mapper>
