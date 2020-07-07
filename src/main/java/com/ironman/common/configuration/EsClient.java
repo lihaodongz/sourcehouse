@@ -25,7 +25,6 @@ public class EsClient {
         RestClientBuilder builder = RestClient.builder(
                 new HttpHost(elasticSearchProperty.getHost(), elasticSearchProperty.getPort().get(0), elasticSearchProperty.getProperty()),
                 new HttpHost(elasticSearchProperty.getHost(), elasticSearchProperty.getPort().get(1), elasticSearchProperty.getProperty()));
-
         RestHighLevelClient restHighLevelClient = new RestHighLevelClient(builder);
         return restHighLevelClient;
     }
