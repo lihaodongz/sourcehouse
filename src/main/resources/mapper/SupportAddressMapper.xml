@@ -28,7 +28,7 @@
         where level  = #{levle}
     </select>
 
-    <select id="getRegion" resultMap="baseResultMap">
+    <select id="getRegionByRegion" resultMap="baseResultMap">
         select
         <include refid="field"/>
         from
@@ -36,6 +36,26 @@
         where
         level = #{level}
         and belong_to = #{cityName}
+    </select>
+
+
+    <select id="getRegionByName" resultMap="baseResultMap">
+        select
+        <include refid="field"/>
+        from
+        <include refid="tableName"/>
+        where
+        level = #{level}
+        and en_name = #{enName}
+    </select>
+
+    <select id="getCity" resultType="com.ironman.sourcehouse.model.SupportAddress">
+        select
+        <include refid="field"/>
+        from
+        <include refid="tableName"/>
+        where en_name = #{cityName}
+        and `level`= #{level}
     </select>
 
 </mapper>

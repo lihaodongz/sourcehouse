@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.ironman.sourcehouse.dao.HouseTagMapper">
+
     <resultMap id="BaseResultMap" type="com.ironman.sourcehouse.model.HouseTag">
         <id column="id" jdbcType="BIGINT" property="id"/>
-    </resultMap>
+        <result column="house_id" jdbcType="INTEGER" property="houseId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+     </resultMap>
+
     <sql id="tableName">
-        house_detail
+        house_tag
     </sql>
     <sql id ="baseField">
         *
     </sql>
+
+    <select id="fetchTags" resultMap="BaseResultMap">
+        select
+        <include refid="baseField"/>
+        from
+        <include refid="tableName"/>
+        where
+        house_id = #{houseId}
+    </select>
 
 
 

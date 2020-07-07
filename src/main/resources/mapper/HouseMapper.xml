@@ -18,12 +18,12 @@
         <result column="region_ne_name"  jdbcType="VARCHAR" property="regionEnName"/>
         <result column="cover"  jdbcType="VARCHAR" property="cover"/>
         <result column="direction"  jdbcType="INTEGER" property="direction"/>
-        <result column="distance_to_dub"  jdbcType="INTEGER" property="distanceToSub"/>
+        <result column="distance_to_subway"  jdbcType="INTEGER" property="distanceToSubway"/>
         <result column="parlour"  jdbcType="VARCHAR" property="parlour"/>
         <result column="district"  jdbcType="VARCHAR" property="district"/>
         <result column="adminId"  jdbcType="VARCHAR" property="adminId"/>
         <result column="bath_room"  jdbcType="INTEGER" property="bathroom"/>
-        <result column="shreet"  jdbcType="VARCHAR" property="shreet"/>
+        <result column="street"  jdbcType="VARCHAR" property="street"/>
     </resultMap>
     <sql id="tableName">
         house
@@ -33,6 +33,59 @@
     </sql>
 
 
+    <sql id = "condition">
+        <where>
+            <if test="house.title != null">
+                title = #{house.title}
+            </if>
+            <if test="house.status != null">
+                and status = #{house.status}
+            </if>
+            <if test="house.cityEnName != null">
+                and city_en_name = #{house.cityEnName}
+            </if>
+            <if test="house.title != null">
+                and title like CONCAT('%',#{house.title},'%')
+            </if>
+        </where>
+    </sql>
 
+    <select id="getWithPaginator" resultMap="BaseResultMap" >
+        select
+        <include refid="baseField"/>
+        from
+        <include refid="tableName"/>
+        <include refid="condition"></include>
+        ORDER BY
+        ${sort.orderBy}
+        ${sort.direction}
+        limit
+        #{paginator.start},
+        #{paginator.size}
+    </select>
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select
+        count(1)
+        from
+        <include refid="tableName"/>
+    </select>
+
+    <select id="findById" resultType="com.ironman.sourcehouse.model.House">
+        select
+        <include refid="baseField"/>
+        from
+        <include refid="tableName"/>
+        where id = #{id}
+    </select>
+
+
+    <update id="updateStatus">
+        update
+        <include refid="tableName"/>
+        set
+        status = #{status}
+        where id = #{id}
+    </update>
 
 </mapper>

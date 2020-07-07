@@ -52,3 +52,10 @@ server:
   error:
     whitelabel:
       enabled: false
+#############################################################
+## elasticsearch 配置
+elasticsearch:
+  host: localhost
+  port[0]: 9200
+  port[1]: 9201
+  property: http

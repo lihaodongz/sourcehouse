@@ -43,7 +43,7 @@ public class House {
     @Column(name = "total_floor")
     private Integer totalFloor;
 
-    @Column(name = "wahch_times")
+    @Column(name = "watch_times")
     private Integer watchTimes;
 
     @Column(name = "build_year")
@@ -70,8 +70,8 @@ public class House {
     @Column(name = "direction")
     private Integer direction;
 
-    @Column(name = "distance_to_sub")
-    private Integer distanceToSub;
+    @Column(name = "distance_to_subway")
+    private Integer distanceToSubway;
 
     @Column(name = "parlour")
     private Integer parlour;
@@ -82,11 +82,11 @@ public class House {
     @Column(name = "admin_id")
     private Integer adminId;
 
-    @Column(name = "bath_room")
+    @Column(name = "bathroom")
     private Integer bathroom;
 
-    @Column(name = "shreet")
-    private String shreet;
+    @Column(name = "street")
+    private String street;
 
 
 }

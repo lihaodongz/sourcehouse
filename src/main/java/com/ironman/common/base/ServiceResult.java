@@ -38,6 +38,10 @@ public class ServiceResult<T> {
         return new ServiceResult<>(false,Message.NOT_FOUND.getValue());
     }
 
+    public boolean isSuccess() {
+        return success;
+    }
+
     public enum Message{
         NOT_FOUND("not found resource"),
         NOT_LOGIN("not login")

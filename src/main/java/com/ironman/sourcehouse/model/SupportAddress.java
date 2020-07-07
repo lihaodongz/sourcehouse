@@ -29,4 +29,25 @@ public class SupportAddress {
     @Column(name = "baidu_map_lat")
     private Double baiduMapLat;
 
+
+
+    public enum level{
+
+        CITY("CITY"),
+        REGION("REGION");
+        private String level;
+
+
+        level(String level){
+            this.level = level;
+        }
+        public String getValue() {
+            return level;
+        }
+
+        public void setValue(String value) {
+            this.level = value;
+        }
+    }
+
 }

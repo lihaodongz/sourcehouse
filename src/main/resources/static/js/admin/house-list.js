@@ -55,9 +55,9 @@ var table = $('#data-table').DataTable({
     }, {
         data: "floor",
     }, {
-        data: "watchTimes",
+        data: "watch_times",
     }, {
-        data: "createTime"
+        data: "create_time"
     }, {
         data: "status",
         orderable: false
@@ -80,7 +80,7 @@ var table = $('#data-table').DataTable({
         targets: 2,
         render: function (data, type, row, meta) {
             return '<td><img onClick="house_edit(\'查看\', \'/admin/house/show?id=' + row.id + '\')" title="查看"' +
-                ' class="picture-thumb" src="' + data + '?imageView2/1/w/200/h/100"></td>';
+                ' class="picture-thumb" src="' + data + '"></td>';
         }
     }, {
         targets: 7,
@@ -96,8 +96,12 @@ var table = $('#data-table').DataTable({
             } else if (data === 1) {
                 html = '<td class="td-status"><span class="label label-success radius">已发布</span></td>';
             } else if (data === 2) {
+                html = '<td class="td-status"><span class="label label-warning radius">待审核</span></td>';
+            } else if (data==3){
+                html = '<td class="td-status"><span class="label label-warning radius">删除</span></td>';
+            }else if (data == 4){
                 html = '<td class="td-status"><span class="label label-warning radius">已出租</span></td>';
-            } else {
+            } else{
                 html = '<td class="td-status"><span class="label label-danger radius">未知状态</span></td>';
             }
             return html;
@@ -118,9 +122,14 @@ var table = $('#data-table').DataTable({
                     ' href="javascript:;" title="发布">发布</a>&nbsp;';
             } else if (data_status === 1) { // 已发布
                 content = '<a style="text-decoration:none" onClick="house_stop(this,' + row.id + ')"' +
-                    ' href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>&nbsp;'
+                    ' href="javascript:;" title="下架">下架</a>&nbsp;'
+            }else if (data_status ===2){
+                content = '<a style="text-decoration:none" onClick="house_pass(this,' + row.id + ')"' +
+                    ' href="javascript:;" title="发布">发布</a>&nbsp;';
+            }else if (data_status ===3){
+                content = '<a style="text-decoration:none" onClick="house_stop(this,' + row.id + ')"' +
+                    ' href="javascript:;" title="发布">恢复</a>&nbsp;';
             }
-
             return prefix + content + suffix;
         }
     }],
@@ -171,7 +180,7 @@ $(function () {
         }
         var str = '';
         $.each(data.data, function (i, item) {
-            str += "<option value=" + item.en_name + ">" + item.cn_name + "</option>";
+            str += "<option value=" + item.enName + ">" + item.cnName + "</option>";
         });
         $city.append(str);
     });

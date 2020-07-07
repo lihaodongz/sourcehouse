@@ -4,6 +4,17 @@
 <mapper namespace="com.ironman.sourcehouse.dao.HouseDetailMapper">
     <resultMap id="BaseResultMap" type="com.ironman.sourcehouse.model.HouseDetail">
         <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="layout_desc" jdbcType="VARCHAR" property="layoutDesc"/>
+        <result column="traffic" jdbcType="VARCHAR" property="traffic"/>
+        <result column="round_service" jdbcType="VARCHAR" property="roundService"/>
+        <result column="rent_way" jdbcType="INTEGER" property="rentWay"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="subway_line_id" jdbcType="INTEGER" property="subwayLineId"/>
+        <result column="subway_line_name" jdbcType="VARCHAR" property="subwayLineName"/>
+        <result column="subway_station_id" jdbcType="INTEGER" property="subwayStationId"/>
+        <result column="subway_station_name" jdbcType="VARCHAR" property="subwayStationName"/>
+        <result column="house_id" jdbcType="INTEGER" property="houseId"/>
     </resultMap>
     <sql id="tableName">
         house_detail
@@ -13,6 +24,23 @@
     </sql>
 
 
+    <select id="selectByHouseId" resultMap="BaseResultMap">
+        select
+        <include refid="baseField"/>
+        from
+        <include refid="tableName"/>
+        where house_id = #{houseId}
+    </select>
 
+    <select id="fetchIds" resultMap="BaseResultMap">
+        select
+        <include refid="baseField"/>
+        from
+        <include refid="tableName"/>
+        where house_id in
+        <foreach collection="ids" index="id" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </select>
 
 </mapper>

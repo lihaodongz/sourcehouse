@@ -18,5 +18,11 @@ public interface SupportAddressMapper extends BaseMapper<SupportAddress> {
     List<SupportAddress> getByLevel(String levle);
 
 
-    List<SupportAddress> getRegion(@Param("cityName") String cityName,@Param("level") String level);
+    List<SupportAddress> getRegionByRegion(@Param("cityName") String cityName,@Param("level") String level);
+
+
+    List<SupportAddress> getRegionByName(@Param("enName") String enName,@Param("level") String level);
+
+
+    SupportAddress getCity(@Param("cityName") String cityName,@Param("level") String level);
 }
